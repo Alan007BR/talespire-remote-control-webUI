@@ -79,21 +79,6 @@ const RemoteControl: React.FC = () => {
             placeholder="Digite o URL do Ngrok"
           />
         </label>
-
-        <label>
-          Comando:
-          <select
-            value={command}
-            onChange={(e) => setCommand(e.target.value)}
-          >
-            <option value="FORWARDCAMERABASEDANDFACE">Mover para Frente</option>
-            <option value="BACKWARD">Mover para Trás</option>
-            <option value="LEFT">Mover para Esquerda</option>
-            <option value="RIGHT">Mover para Direita</option>
-            <option value="ROTATE,LEFT">Rotacionar para Esquerda</option>
-            <option value="ROTATE,RIGHT">Rotacionar para Direita</option>
-          </select>
-        </label>
         {/* <button type="submit">Enviar Comando</button> */}
       </form>
       {response && <div>{response}</div>}
