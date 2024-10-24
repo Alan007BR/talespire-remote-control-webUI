@@ -62,6 +62,7 @@ const RemoteControl: React.FC = () => {
           Nome do Mini:
           <input
             type="text"
+            className="text-black"
             value={miniName}
             onChange={(e) => setMiniName(e.target.value)}
           />
@@ -71,6 +72,7 @@ const RemoteControl: React.FC = () => {
         <label>
           URL do Ngrok:
           <input
+            className="text-black"
             type="text"
             value={ngrokUrl}
             onChange={(e) => setNgrokUrl(e.target.value)}
