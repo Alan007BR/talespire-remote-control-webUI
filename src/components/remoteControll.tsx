@@ -55,34 +55,38 @@ const RemoteControl: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Controle Remoto de Mini</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nome do Mini:
+    <div className='flex flex-col h-screen bg-[#22223b]'>
+      <h1>Talespire remote control webui</h1>
+      <form className="flex flex-col sm:flex-row" onSubmit={handleSubmit}>
+        <label
+        className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+        >
+        <span className="text-xs font-medium text-white"> name </span>
           <input
             type="text"
-            className="text-black"
+            placeholder='Freya'
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm text-black"
             value={miniName}
             onChange={(e) => setMiniName(e.target.value)}
           />
         </label>
         
         {/* Novo campo para o URL do Ngrok */}
-        <label>
-          URL do Ngrok:
+        <label
+        className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+        >
+        <span className="text-xs font-medium text-white"> url </span>
           <input
-            className="text-black"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm text-black"
             type="text"
             value={ngrokUrl}
             onChange={(e) => setNgrokUrl(e.target.value)}
-            placeholder="Digite o URL do Ngrok"
+            placeholder="server URL"
           />
         </label>
-        {/* <button type="submit">Enviar Comando</button> */}
       </form>
       {response && <div>{response}</div>}
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-full">
         <div className="flex flex-col items-center">
           <button
               className="mb-4 p-4 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-700"
@@ -112,6 +116,17 @@ const RemoteControl: React.FC = () => {
           </button>
         </div>
       </div>
+      <span className="text-xs font-medium text-white"> To work properly, you may need to allow the browser to use mixed content </span>
+      <footer className="text-center p-4 mt-4 border-t">
+      <a
+        href="https://github.com/Alan007BR/talespire-remote-control-webUI"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-500 hover:underline"
+      >
+        Github Repository
+      </a>
+    </footer>
     </div>
   );
 };
