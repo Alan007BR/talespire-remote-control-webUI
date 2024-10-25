@@ -7,35 +7,11 @@ const RemoteControl: React.FC = () => {
   const [response, setResponse] = useState<string | null>(null);
   const [ngrokUrl, setNgrokUrl] = useState<string>(''); // Novo estado para o URL do Ngrok
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const message = `${miniName},${command}`;
-
-    try {
-      const res = await fetch(`${ngrokUrl}`, {  // Usa o URL do Ngrok
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain',
-        },
-        body: message,
-      });
-
-      if (!res.ok) {
-        throw new Error('Falha ao enviar o comando');
-      }
-
-      const data = await res.text();
-      setResponse(`Resposta: ${data}`);
-    } catch (error) {
-      setResponse('Erro ao enviar o comando.');
-    }
-  };
-
   const handleButtonClick = async (message: string) => {
     console.log(`Direction: ${message}`);
     try {
-        const res = await fetch(`${ngrokUrl}`, {  // Usa o URL do Ngrok
+      console.log("trying")
+        const res = await fetch(`${ngrokUrl}`, {  // ngrok url, server or internal ipv4
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain',
@@ -44,20 +20,20 @@ const RemoteControl: React.FC = () => {
         });
   
         if (!res.ok) {
-          throw new Error('Falha ao enviar o comando');
+          throw new Error('error');
         }
   
         const data = await res.text();
-        setResponse(`Resposta: ${data}`);
+        setResponse(`Response: ${data}`);
       } catch (error) {
-        setResponse('Erro ao enviar o comando.');
+        setResponse('Error');
       }
   };
 
   return (
     <div className='flex flex-col h-screen bg-[#22223b]'>
       <h1>Talespire remote control webui</h1>
-      <form className="flex flex-col sm:flex-row" onSubmit={handleSubmit}>
+      <form className="flex flex-col sm:flex-row">
         <label
         className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
         >
@@ -85,7 +61,7 @@ const RemoteControl: React.FC = () => {
           />
         </label>
       </form>
-      {response && <div>{response}</div>}
+      {/* {response && <div>{response}</div>} */}
       <div className="flex flex-col items-center justify-center h-full">
         <div className="flex flex-col items-center">
           <button
